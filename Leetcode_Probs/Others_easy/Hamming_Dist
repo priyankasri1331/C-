@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int hammingDistance(int x, int y) 
+    {
+        int mask = 1;
+        int count = 0;
+        int val = x ^ y;
+        for(int i = 0; i < 31; i++)
+        {
+            //cout << mask << " "<< count << endl;
+            if((val & mask) != 0)
+            {
+                count++;
+            }
+            mask = mask << 1;
+        }
+        return count;
+    }
+};
