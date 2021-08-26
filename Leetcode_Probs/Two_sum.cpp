@@ -1,22 +1,24 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) 
-    {
-        unordered_map<int, int> umap;
-        vector<int> out;
-        umap[nums[0]] = 0;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> temp;
+        map<int, int> table;
         
-        for (unsigned int i = 1; i < nums.size(); i++)
+        for(int i = 0; i < nums.size(); i++)
         {
-            auto it = umap.find(target - nums[i]);   
-            if (it != umap.end())
+            int comp = target - nums[i];
+            if(table.count(comp))
             {
-                out.push_back(it->second);
-                out.push_back(i);
-                return out;
+                temp.insert(temp.end(), {i, table[comp]});
+                return temp;
             }
-            umap[nums[i]] = i;  
+            else
+            {
+            table.insert({nums[i],i});
+            }
         }
-    return out;
+        
+        return temp;
+
     }
 };
